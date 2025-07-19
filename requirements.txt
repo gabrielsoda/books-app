@@ -1,0 +1,22 @@
+# requirements.txt
+
+# Backend
+fastapi
+uvicorn[standard]
+
+# CLI
+questionary
+term-image
+rich
+
+# HTTP Client & Data Validation
+httpx
+pydantic
+pydantic-settings
+email-validator  # <-- DEPENDENCIA AÑADIDA
+
+# Security
+bcrypt
+
+# Utilities
+requests
