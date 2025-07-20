@@ -1,5 +1,4 @@
 # book_app/README.md
-
 # Book App - Gestión de Libros en Terminal
 
 Este es un proyecto completo en Python para gestionar una colección de libros a través de una API backend con FastAPI y una interfaz de línea de comandos (CLI) interactiva.
@@ -46,7 +45,25 @@ En una terminal, ejecuta el servidor de FastAPI:
 uvicorn api.main:app --reload
 ```
 
-El servidor estará disponible en http://127.0.0.1:8000.
+El servidor estará disponible en `http://127.0.0.1:8000`.
+
 #### B. Iniciar la Interfaz de Usuario (CLI)
+
 En otra terminal, ejecuta el menú interactivo:
 
+```bash
+python -m cli.menu
+```
+
+Al iniciar por primera vez, el programa descargará automáticamente la base de datos de libros y las imágenes de las portadas.
+
+Sigue las instrucciones en pantalla para registrarte, iniciar sesión y explorar las funcionalidades.
+
+## ✅ Funcionalidades
+
+*   **CRUD completo de libros:** Añadir, ver, actualizar y eliminar libros.
+*   **Autenticación de usuarios:** Sistema de registro e inicio de sesión seguro con contraseñas hasheadas.
+*   **Consulta avanzada:** Busca libros por país o recibe sugerencias por número de páginas.
+*   **Visualización de portadas:** Muestra las portadas de los libros directamente en la terminal.
+*   **Logging:** Todas las operaciones importantes se registran en `logs/app.log`.
+*   **Descarga automática de datos:** Los datos iniciales se obtienen de forma automática si no existen localmente.
