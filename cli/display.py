@@ -52,7 +52,7 @@ def display_image(image_link_path: Optional[str]):
         image = from_file(image_path, width=50)
         image.draw()
     except Exception as e:
-        console.print(f"[red]No se pudo mostrar la imagen. Es posible que tu terminal no sea compatible.[/red]")
+        console.print("[red]No se pudo mostrar la imagen. Es posible que tu terminal no sea compatible.[/red]")
         console.print(f"[red]Error: {e}[/red]")
 
 def display_book_list(books: list):
