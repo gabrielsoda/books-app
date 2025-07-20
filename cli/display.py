@@ -7,11 +7,9 @@ from rich.panel import Panel
 from term_image.image import from_file
 from typing import Optional
 
-# --- INICIO DE LA CORRECCIÓN: AÑADIR VARIABLES GLOBALES FALTANTES ---
+# Definición de variables globales
 DATA_DIR = "data"
 IMAGES_DIR = os.path.join(DATA_DIR, "images")
-# --- FIN DE LA CORRECCIÓN ---
-
 console = Console()
 
 def display_book(book: dict, with_image: bool = True):
@@ -36,8 +34,6 @@ def display_book(book: dict, with_image: bool = True):
     if with_image:
         display_image(book.get('imageLink'))
 
-# book_app/cli/display.py
-
 def display_image(image_link_path: Optional[str]):
     """Muestra la imagen de portada en la terminal."""
     if not image_link_path:
@@ -53,20 +49,12 @@ def display_image(image_link_path: Optional[str]):
     
     try:
         console.print("Cargando imagen de portada...")
-        
-        # --- INICIO DE LA MEJORA ---
-        # 1. Cambiamos el escalado a una altura fija para un mejor aspecto.
-        #    20-24 líneas suele ser un buen tamaño vertical.
-        image = from_file(image_path, height=22)
+        image = from_file(image_path, width=50)
         image.draw()
-        
-        # 2. Añadimos una línea en blanco para separar la imagen del texto siguiente.
-        console.print() 
-        # --- FIN DE LA MEJORA ---
-
     except Exception as e:
         console.print(f"[red]No se pudo mostrar la imagen. Es posible que tu terminal no sea compatible.[/red]")
         console.print(f"[red]Error: {e}[/red]")
+
 def display_book_list(books: list):
     """Muestra una lista de libros en una tabla."""
     if not books:

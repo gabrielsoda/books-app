@@ -232,8 +232,7 @@ def main_menu():
     elif action == "Añadir un nuevo libro": cli_add_book()
     elif action == "Actualizar un libro": cli_update_book()
     elif action == "Eliminar un libro": cli_delete_book()
-    
-    # --- INICIO DE LA CORRECCIÓN FINAL ---
+
     # Pausa para que el usuario pueda leer la salida, con lógica especial para imágenes.
     
     # Acciones que pueden mostrar una imagen y necesitan una pausa para el renderizado.

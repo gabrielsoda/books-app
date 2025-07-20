@@ -44,3 +44,9 @@ En una terminal, ejecuta el servidor de FastAPI:
 
 ```bash
 uvicorn api.main:app --reload
+```
+
+El servidor estará disponible en http://127.0.0.1:8000.
+#### B. Iniciar la Interfaz de Usuario (CLI)
+En otra terminal, ejecuta el menú interactivo:
+
