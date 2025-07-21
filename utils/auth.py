@@ -6,7 +6,9 @@ import bcrypt
 from pydantic import BaseModel, Field, EmailStr
 from .logger import log_operation
 
-USERS_FILE = "users.json"
+
+DATA_DIR = "data"
+USERS_FILE = os.path.join(DATA_DIR, "users.json")
 
 class User(BaseModel):
     username: str = Field(..., min_length=3)
