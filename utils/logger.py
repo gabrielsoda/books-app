@@ -7,7 +7,7 @@ import os
 LOG_DIR = "logs"
 LOG_FILE = os.path.join(LOG_DIR, "app.log")
 
-def setup_logger():
+def setup_logger() -> logging.Logger:
     """Configura el logger para registrar eventos de la aplicación."""
     if not os.path.exists(LOG_DIR):
         os.makedirs(LOG_DIR)
@@ -34,7 +34,7 @@ def setup_logger():
 
     return logger
 
-def log_operation(user: str, operation: str, book_title: str = "N/A", result: str = "Success"):
+def log_operation(user: str, operation: str, book_title: str = "N/A", result: str = "Success") -> None:
     """
     Registra una operación en el log.
     
