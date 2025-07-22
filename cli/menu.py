@@ -4,7 +4,6 @@ import questionary
 import httpx
 from rich.console import Console
 from rich.panel import Panel
-import os
 import getpass
 from typing import Optional
 import time 
@@ -50,7 +49,8 @@ def cli_list_books():
 
 def cli_get_book():
     title = questionary.text("Introduce el título del libro a buscar:").ask()
-    if not title: return
+    if not title: 
+        return
     try:
         response = client.get(f"/books/title/{title}")
         if not handle_api_error(response):
@@ -87,7 +87,8 @@ def cli_delete_book():
         console.print("[yellow]Debes iniciar sesión para eliminar un libro.[/yellow]")
         return
     title = questionary.text("Introduce el título del libro a eliminar:").ask()
-    if not title: return
+    if not title: 
+        return
     if questionary.confirm(f"¿Estás seguro de que quieres eliminar '{title}'?").ask():
         try:
             response = client.delete(f"/books/{title}", auth=auth)
@@ -102,7 +103,8 @@ def cli_update_book():
         console.print("[yellow]Debes iniciar sesión para actualizar un libro.[/yellow]")
         return
     title = questionary.text("Introduce el título del libro a actualizar:").ask()
-    if not title: return
+    if not title: 
+        return
     console.print("[cyan]Introduce los nuevos datos (deja en blanco para no cambiar):[/cyan]")
     new_data = {
         "author": questionary.text("Nuevo autor:").ask(),
@@ -123,7 +125,8 @@ def cli_update_book():
 
 def cli_get_by_country():
     country = questionary.text("Introduce el país:").ask()
-    if not country: return
+    if not country: 
+        return
     try:
         response = client.get(f"/books/country/{country}")
         if not handle_api_error(response):
@@ -136,7 +139,8 @@ def cli_get_by_country():
 
 def cli_suggest_by_pages():
     pages_str = questionary.text("Introduce un número de páginas para buscar sugerencias:", validate=lambda t: t.isdigit()).ask()
-    if not pages_str: return
+    if not pages_str: 
+        return
     try:
         response = client.get(f"/books/suggest/pages/{int(pages_str)}")
         if not handle_api_error(response):
@@ -174,7 +178,8 @@ def auth_menu():
 
     if choice == "Iniciar Sesión":
         username = questionary.text("Usuario:").ask()
-        if not username: return False # Permite salir del prompt
+        if not username: 
+            return False # Permite salir del prompt
         password = getpass.getpass("Contraseña: ")
         
         from utils.auth import login_user
@@ -189,7 +194,8 @@ def auth_menu():
             
     elif choice == "Registrarse":
         username = questionary.text("Nuevo usuario:").ask()
-        if not username: return auth_menu() # Vuelve al menú si se cancela
+        if not username: 
+            return auth_menu() # Vuelve al menú si se cancela
         email = questionary.text("Email:").ask()
         password = getpass.getpass("Contraseña: ")
         if register_user(username, email, password):
@@ -203,7 +209,10 @@ def auth_menu():
 
 def main_menu():
     is_authenticated = current_user is not None
-    prompt = f"Menú Principal (Sesión iniciada como: [bold cyan]{current_user}[/bold cyan])" if is_authenticated else "Menú Principal (Invitado)"
+    if is_authenticated:
+        console.print(f"Menú Principal (Sesión iniciada como: [bold cyan]{current_user}[/bold cyan])")
+    else:
+        console.print("[yellow]Menú Principal (Invitado)[/yellow]")
     choices = [
         "Listar todos los libros",
         "Buscar un libro por título",
@@ -218,20 +227,27 @@ def main_menu():
     ]
 
     action = questionary.select(
-        prompt,
+        "Menú Principal",
         choices=choices
     ).ask()
 
     if action is None or action == "Salir":
         return False # Termina el bucle
 
-    if action == "Listar todos los libros": cli_list_books()
-    elif action == "Buscar un libro por título": cli_get_book()
-    elif action == "Buscar libros por país": cli_get_by_country()
-    elif action == "Sugerir libro por n° de páginas": cli_suggest_by_pages()
-    elif action == "Añadir un nuevo libro": cli_add_book()
-    elif action == "Actualizar un libro": cli_update_book()
-    elif action == "Eliminar un libro": cli_delete_book()
+    if action == "Listar todos los libros": 
+        cli_list_books()
+    elif action == "Buscar un libro por título": 
+        cli_get_book()
+    elif action == "Buscar libros por país": 
+        cli_get_by_country()
+    elif action == "Sugerir libro por n° de páginas": 
+        cli_suggest_by_pages()
+    elif action == "Añadir un nuevo libro": 
+        cli_add_book()
+    elif action == "Actualizar un libro": 
+        cli_update_book()
+    elif action == "Eliminar un libro": 
+        cli_delete_book()
 
     # Pausa para que el usuario pueda leer la salida, con lógica especial para imágenes.
     
