@@ -21,7 +21,7 @@ class UserInDB(User):
 def get_users_db():
     """Carga la base de datos de usuarios desde el archivo JSON."""
     if not os.path.exists(USERS_FILE):
-        return {}
+        return {} # Aunque siempre va a existir porque se crea inmediatamente después de iniciar el programa
     with open(USERS_FILE, "r") as f:
         try:
             return json.load(f)
