@@ -60,11 +60,9 @@ def download_image(book, progress, task):
     image_link_path = book.get('imageLink') # e.g., 'images/things-fall-apart.jpg'
     if not image_link_path:
         return False, "No image link"
-    
-    # --- INICIO DE LA CORRECCIÓN ---
+
     # Extraemos solo el nombre del archivo para evitar duplicar la carpeta 'images'
     image_filename = os.path.basename(image_link_path)
-    # --- FIN DE LA CORRECCIÓN ---
     
     image_url = os.path.join(IMAGE_URL_PREFIX, image_link_path) # La URL de origen sí usa la ruta completa
     dest_path = os.path.join(IMAGES_DIR, image_filename) # La ruta de destino usa solo el nombre del archivo
