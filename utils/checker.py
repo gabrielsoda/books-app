@@ -3,10 +3,10 @@
 import os
 import json
 from datetime import datetime
-from .logger import log_operation
 
-METADATA_FILE = "metadata.json"
+
 DATA_DIR = "data"
+METADATA_FILE = os.path.join(DATA_DIR, "metadata.json")
 BOOKS_FILE = os.path.join(DATA_DIR, "books.json")
 IMAGES_DIR = os.path.join(DATA_DIR, "images")
 
