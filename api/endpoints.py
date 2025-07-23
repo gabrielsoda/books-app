@@ -6,7 +6,6 @@ from typing import List, Dict, Any
 from . import crud
 from utils.auth import login_user
 from utils.logger import log_operation
-import secrets
 
 router = APIRouter()
 security = HTTPBasic()
