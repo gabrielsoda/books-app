@@ -264,8 +264,6 @@ def main_menu():
     elif action in ["Listar todos los libros", "Buscar libros por país"]:
         questionary.press_any_key_to_continue().ask()
     
-    # Las acciones de administrador y otras no necesitan una pausa aquí.
-    # --- FIN DE LA CORRECCIÓN FINAL ---
 
     return True
 
